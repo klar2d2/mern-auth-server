@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json({ limit: '10 mb' }))
 
 // Routes
+app.use('/aut', require('./controllers/auth'))
+
 app.get('/', (req, res) => {
   res.send('its ya boi')
 })
