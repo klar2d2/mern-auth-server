@@ -60,7 +60,15 @@ router.post('/signup', (req, res) => {
 
 //NOTE user should be loggied  in to acces this route
 router.get('/current/user', (req, res) => {
-  res.send('STUB CUrrent USer DAta')
+  // the user is logged in so req.user should have data
+  if (!req.user || !req.user._id) {
+    return res.status(417).send({ message: 'Expectation failed: Check configuration'})
+  }
+
+  //NOTE : this is the user data from the time the token was issued
+  //Warning: if you update the user info those changes will not be reflected here
+  // To avoid this, reissue a token when you update user data
+  res.send({ user: req.user })
 })
 
 module.exports= router
