@@ -13,10 +13,6 @@ let userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     minlength: 5,
-    validate: {
-      validator: (input) => {
-        return /*@?*\..*/.test(input)
-      }
     },
     password:{
       type: String,
@@ -24,7 +20,6 @@ let userSchema = new mongoose.Schema({
       minlength: 8,
       maxlength: 32
     },
-  }
 })
 
 //Use bcrypt to hash password
